@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common :: meta_header('top',~{::link},~{::script})">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+
+<div th:replace="common :: header"></div>
+
+<main>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr class="table-light">
+                        <th>名前</th>
+                        <th>デビュー</th>
+                        <th>説明</th>
+                        <th>事務所</th>
+                        <th colspan="2"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr scope="row" th:each="geinin : ${geinins}">
+                        <td th:text="${geinin.combi_name}"></td>
+                        <td th:text="${geinin.debut}"></td>
+                        <td th:text="${geinin.description}"></td>
+                        <td th:text="${geinin.office}"></td>
+                        <td>
+                            <form th:action="@{/combi/edit}" method="post">
+                                <input type="submit" class="btn btn-dark" name="edit" value="編集">
+                                <input type="hidden" name="g_id" th:value="${geinin.g_id}">
+                            </form>
+                        </td>
+                        <td>
+                            <form th:action="@{/combi/edit}" method="post">
+                                <input type="submit" class="btn btn-danger" name="delete" value="削除" id="deleteModalShow">
+                                <input type="hidden" name="g_id" th:value="${geinin.g_id}">
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

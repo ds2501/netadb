@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common :: meta_header('top',~{::link},~{::script})">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+
+<div th:replace="common :: header"></div>
+
+<main>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr class="table-light">
+                        <th>ネタ名</th>
+                        <th>コンビ名</th>
+                        <th>説明</th>
+                        <th>YOUTUBE</th>
+                        <th colspan="2"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr scope="row" th:each="neta : ${netas}">
+                        <td th:text="${neta.neta_name}"></td>
+                        <td th:text="${neta.combi_name}"></td>
+                        <td th:text="${neta.description}"></td>
+                        <td>
+                            <a th:href="${neta.link}" class="btn btn-primary">見る</a>
+                        </td>
+                        <td>
+                            <form th:action="@{/neta/edit}" method="post">
+                                <input type="submit" class="btn btn-dark" name="edit" value="編集">
+                                <input type="hidden" name="n_id" th:value="${neta.n_id}">
+                            </form>
+                        </td>
+                        <td>
+                            <form th:action="@{/neta/edit}" method="post">
+                                <input type="submit" class="btn btn-danger" name="delete" value="削除" id="deleteModalShow">
+                                <input type="hidden" name="n_id" th:value="${neta.n_id}">
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

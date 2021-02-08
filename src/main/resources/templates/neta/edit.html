@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common :: meta_header('top',~{::link},~{::script})">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+
+<div th:replace="common :: header"></div>
+
+<main>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <form th:action="@{/neta/edit}" th:object="${netaForm}" method="post">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr class="form-group">
+                            <th>ネタ名</th>
+                            <td>
+                                <input type="text" class="form-control" name="neta_name" th:field="*{neta_name}">
+                            </td>
+                        </tr>
+                        <tr class="form-group">
+                            <th>説明</th>
+                            <td>
+                                <input type="text" class="form-control" name="description" th:field="*{description}">
+                            </td>
+                        </tr>
+                        <tr class="form-group">
+                            <th>YOUTUBE</th>
+                            <td>
+                                <input type="text" class="form-control" name="link" th:field="*{link}">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <input type="submit" class="btn btn-dark" name="back" value="戻る">
+                <input type="submit" class="btn btn-primary" name="regist" value="実行">
+                <input type="hidden" name="n_id" th:value="*{n_id}">
+            </form>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>
